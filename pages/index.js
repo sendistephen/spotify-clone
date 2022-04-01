@@ -1,3 +1,4 @@
+import { getSession } from "next-auth/react";
 import Head from "next/head";
 import Center from "../components/Center";
 import Sidebar from "../components/Sidebar";
@@ -13,9 +14,16 @@ export default function Home() {
 
 			<main className="flex">
 				<Sidebar />
-
 				<Center />
 			</main>
 		</div>
 	);
+}
+
+// prefetch the session so we can check if the user is logged in and there is a token before the client side render
+export async function getServerSideProps(context) {
+	const session = await getSession(context);
+	return {
+		props: { session },
+	};
 }
