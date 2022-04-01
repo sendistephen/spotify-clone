@@ -9,18 +9,20 @@ import {
 } from "@heroicons/react/outline";
 import { signOut, useSession } from "next-auth/react";
 import useSpotify from "../hooks/useSpotify";
+import { useRecoilState } from "recoil";
+import { playlistIdState } from "../atoms/playlist.atom";
 
 const Sidebar = () => {
 	const [playlists, setPlaylists] = useState([]);
 	const spotify = useSpotify();
 	const { data: session, status } = useSession();
-
+	const [_, setPlaylistId] = useRecoilState(playlistIdState);
+	
 	useEffect(() => {
 		if (spotify.getAccessToken()) {
 			spotify
 				.getUserPlaylists()
 				.then((data) => {
-					console.log(data);
 					setPlaylists(data.body.items);
 				})
 				.catch((err) => console.log(err));
@@ -62,8 +64,11 @@ const Sidebar = () => {
 				</button>
 				<hr className="border-t-[0.1px] border-gray-900" />
 				{playlists.map((playlist) => (
-					<p className="hover:text-white cursor-pointer" key={playlist.id}>
-						{playlists.name}
+					<p
+						className="hover:text-white cursor-pointer"
+						key={playlist.id}
+						onClick={() => setPlaylistId(playlist.id)}>
+						{playlist.name}
 					</p>
 				))}
 			</div>
