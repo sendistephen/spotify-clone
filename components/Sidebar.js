@@ -17,7 +17,7 @@ const Sidebar = () => {
 	const spotify = useSpotify();
 	const { data: session, status } = useSession();
 	const [_, setPlaylistId] = useRecoilState(playlistIdState);
-	
+
 	useEffect(() => {
 		if (spotify.getAccessToken()) {
 			spotify
@@ -30,8 +30,8 @@ const Sidebar = () => {
 	}, [session, spotify]);
 
 	return (
-		<div className="text-gray-500 p-5 text-sm border-r border-gray-900 overflow-y-scroll h-screen">
-			<div className="space-y-4">
+		<div className="text-gray-500 p-5 text-sm border-r border-gray-900 overflow-y-scroll h-screen min-w-[14rem] hidden md:inline-flex pb-36">
+			<div className="space-y-4 flex-grow">
 				<button
 					className="flex items-center space-x-2 hover:text-white"
 					onClick={() => signOut()}>
