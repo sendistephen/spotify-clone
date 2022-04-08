@@ -1,10 +1,28 @@
+import { currentTrackIdState } from "../atoms/song.atom";
 import useSpotify from "../hooks/useSpotify";
 import { MillisMinsAndSeconds } from "../lib/time";
 
 function Song({ track, order }) {
+	const [currentTrackID, setCurrentTrackID] =
+		useRecoildState(currentTrackIdState);
+
+	const [isPlaying, setIsPlaying] = useRecoildState(isPlayingState);
+
 	const spotify = useSpotify();
+
+	const playSong = () => {
+		setCurrentTrackID(track.id);
+		setIsPlaying(true);
+		// call spotify api to play song
+		spotify.play({
+			uris: [track.uri],
+		});
+	};
+
 	return (
-		<div className="grid grid-cols-2 text-gray-500 hover:bg-gray-900 px-5 py-4 rounded-lg">
+		<div
+			onClick={playSong}
+			className="grid grid-cols-2 text-gray-500 hover:bg-gray-900 px-5 py-4 rounded-lg cursor-pointer">
 			<div className="flex space-x-4  items-center ">
 				<p>{order + 1}</p>
 				<img src={track?.album?.images[0]?.url} alt="" className="h-10 w-10" />
