@@ -74,7 +74,7 @@ function Player() {
 		}
 	}, [volume]);
 	return (
-		<div className="h-24 bg-gradient-to-b from-black to-gray-900 text-white">
+		<div className="h-24 mb-2 px-4 bg-gradient-to-b from-black to-gray-900 text-white">
 			{/* left */}
 			<div className="flex items-center space-x-4">
 				<img
@@ -95,15 +95,9 @@ function Player() {
 					className="button"
 				/>
 				{isPlaying ? (
-					<PauseIcon
-						onClick={handlePlayPause}
-						className="button h-10 w-10 fill-white"
-					/>
+					<PauseIcon onClick={handlePlayPause} className="button h-10 w-10 " />
 				) : (
-					<PlayIcon
-						onClick={handlePlayPause}
-						className="button h-10 w-10 fill-white"
-					/>
+					<PlayIcon onClick={handlePlayPause} className="button h-10 w-10" />
 				)}
 				<FastForwardIcon
 					onClick={() => spotify.skipToNext()}
