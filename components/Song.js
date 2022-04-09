@@ -1,5 +1,5 @@
 import { useRecoilState } from "recoil";
-import { currentTrackIdState } from "../atoms/song.atom";
+import { currentTrackIdState, isPlayingState } from "../atoms/song.atom";
 import useSpotify from "../hooks/useSpotify";
 import { MillisMinsAndSeconds } from "../lib/time";
 
