@@ -7,7 +7,6 @@ import { currentTrackIdState, isPlayingState } from "../atoms/song.atom";
 import { useEffect, useState } from "react/cjs/react.production.min";
 import useSongInfo from "../hooks/useSongInfo";
 import {
-	HeartIcon,
 	VolumeUpIcon as VolumeDownIcon,
 	SwitchHorizontalIcon,
 	PauseIcon,
